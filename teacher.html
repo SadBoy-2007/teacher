@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Message for You</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #4b6cb7, #182848);
+            color: #66ff66;
+            text-align: center;
+            overflow: hidden;
+        }
+        .message-container {
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.6);
+            transform: translateY(-20px);
+            animation: floatUp 2s ease-out infinite alternate;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(-20px); }
+            100% { transform: translateY(10px); }
+        }
+        h1 {
+            color: #ffcc00;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+        }
+        .typing {
+            font-size: 1.2em;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            border-right: 3px solid #66ff66;
+            animation: blinkCursor 0.7s step-end infinite;
+            text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.6);
+        }
+        .button-container {
+            margin-top: 20px;
+            animation: fadeIn 1s ease-out;
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 1.2em;
+            color: #66ff66;
+            background-color: #1d1f21;
+            border: 2px solid #66ff66;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4);
+        }
+        button:hover {
+            background-color: #66ff66;
+            color: #1d1f21;
+            transform: translateY(-2px);
+        }
+        button:active {
+            transform: translateY(2px);
+        }
+        @keyframes blinkCursor {
+            50% { border-color: transparent; }
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .heart {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            color: #ff3366;
+            animation: floatHeart 3s ease-in-out infinite;
+        }
+        @keyframes floatHeart {
+            0% { transform: translate(-50%, 0); }
+            50% { transform: translate(-50%, -20px); }
+            100% { transform: translate(-50%, 0); }
+        }
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+            animation: starsAnimation 5s infinite;
+        }
+        @keyframes starsAnimation {
+            0% { opacity: 0.1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 0.1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="message-container">
+        <h1> A Special Message for You </h1>
+        <p class="typing" id="typing"></p>
+        <div class="button-container">
+            <button onclick="alert('Thank you for everything! 🌟')">Thank You!</button>
+        </div>
+        <!--div class="heart">❤️</div-->
+    </div>
+
+    <script>
+        const message = `Dear Teacher,
+
+Every day, I am profoundly grateful to have an extraordinary educator like you. The guidance, encouragement, and wisdom you have shared have not only shaped my knowledge but also touched my heart. Behind every lesson lies your dedication and the genuine care that only a true teacher can give.
+
+You are an invaluable source of inspiration, and I am incredibly proud to be your student. Thank you for all the knowledge and kindness you've bestowed upon me. 🌹 🌟`;
+
+        let i = 0;
+        const speed = 50;
+
+        function typeWriter() {
+            if (i < message.length) {
+                document.getElementById("typing").textContent += message.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+
+        window.onload = typeWriter;
+    </script>
+</body>
+</html>
